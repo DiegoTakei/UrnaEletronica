@@ -8,9 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 public class Sessao {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	@Column(name = "id_pessoa")
 	private int id;
 	
@@ -24,6 +24,7 @@ public class Sessao {
 	@OneToOne
 	@Column(name = "tb_urna_FK")
 	private Urna urna;
+	
 
 	public Eleitor getEleitor() {
 		return eleitor;

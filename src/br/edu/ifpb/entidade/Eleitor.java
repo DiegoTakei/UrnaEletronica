@@ -13,6 +13,7 @@ public class Eleitor extends Pessoa {
 	
 	@Column(name = "titulo_pessoa")
 	private String titulo_votacao;
+	
 
 	public String getTitulo_votacao() {
 		return titulo_votacao;

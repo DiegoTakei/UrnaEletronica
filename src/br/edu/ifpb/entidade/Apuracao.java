@@ -2,6 +2,9 @@ package br.edu.ifpb.entidade;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -9,30 +12,53 @@ import javax.persistence.Table;
 @Table(name = "tb_apuracao")
 @NamedQuery(name = "Apuracao.getAll", query = "from Apuracao")
 public class Apuracao {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_pessoa")
+	private int id;
+	
 
 	@Column(name = "qnt_votos")
 	private int qnt_votos;
 	
+	
 	@Column(name = "qnt_brancos")
 	private int qnt_brancos;
+	
 	
 	@Column(name = "qnt_nulos")
 	private int qnt_nulos;
 	
+	
 	@Column(name = "qnt_ausentes")
 	private int qnt_ausentes;
+	
 	
 	@Column(name = "cadidato_mais_votado")
 	private int candidato_mais_votado;
 	
+	
 	@Column(name = "cadidato_menos_votado")
 	private int candidato_menos_votado;
+	
 	
 	@Column(name = "cadidato_eleito")
 	private int candidato_eleito;
 	
+	
 	@Column(name = "candidatos_segundo_turno")
 	private int candidatos_segundo_turno;
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getQnt_votos() {
 		return qnt_votos;

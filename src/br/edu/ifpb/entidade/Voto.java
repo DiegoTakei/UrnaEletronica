@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -19,23 +20,25 @@ public class Voto{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	@Column(name = "id_voto")
 	private int id;
 	
 	@OneToOne
-	@Column(name = "eleitor_FK")
+	@JoinColumn(name = "eleitor_FK")
 	private Eleitor eleitor;
 	
 	@ManyToOne
-	@Column(name = "candidato_FK")
+	@JoinColumn(name = "candidato_FK")
 	private Candidato candidato;
 	
-	@Column(name = "urna_FK")
+	@ManyToOne
+	@JoinColumn(name = "urna_FK")
 	private Urna urna;
 	
 	@Column(name = "data")
 	private Date data;
+	
+	
 
 	public Eleitor getEleitor() {
 		return eleitor;
@@ -69,6 +72,4 @@ public class Voto{
 		this.data = data;
 	}
 	
-	
-
 }

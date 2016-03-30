@@ -17,12 +17,12 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 	public List<Pessoa> getAll() {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		List<Pessoa> argument = null;
+		List<Pessoa> pessoas = null;
 
 		try {
 			session.beginTransaction();
 			Query query = session.getNamedQuery("Pessoa.getAll");
-			argument = (List<Pessoa>) query.list();
+			pessoas = (List<Pessoa>) query.list();
 			session.getTransaction().commit();
 
 		} catch (HibernateException hexp) {
@@ -33,18 +33,18 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 			session.close();
 		}
 
-		return argument;
+		return pessoas;
 	}
 
 	@Override
 	public Pessoa getById(Integer pk) {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Pessoa argument = null;
+		Pessoa pessoa = null;
 
 		try {
 			session.beginTransaction();
-			argument = (Pessoa) session.get(Pessoa.class, pk);
+			pessoa = (Pessoa) session.get(Pessoa.class, pk);
 			session.getTransaction().commit();
 
 		} catch (HibernateException hexp) {
@@ -54,6 +54,6 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 			session.close();
 		}
 
-		return argument;
+		return pessoa;
 	}
 }

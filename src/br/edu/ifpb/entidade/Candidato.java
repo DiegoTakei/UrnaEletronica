@@ -16,6 +16,7 @@ public class Candidato extends Eleitor {
 	
 	@Column(name = "cargo_candidato")
 	private String cargo;
+	
 
 	public int getNumero() {
 		return numero;
