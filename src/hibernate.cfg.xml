@@ -22,6 +22,7 @@
 		<mapping class="br.edu.ifpb.entidade.Urna"/>
 		<mapping class="br.edu.ifpb.entidade.Votacao"/>
 		<mapping class="br.edu.ifpb.entidade.Apuracao"/>
+		<mapping class="br.edu.ifpb.entidade.Sessao"/>
 		
 		
 	</session-factory>

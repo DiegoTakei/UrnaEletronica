@@ -11,15 +11,15 @@ import javax.persistence.Table;
 
 public class Eleitor extends Pessoa {
 	
-	@Column(name = "sessao_eleitor")
-	private int sessao;
+	@Column(name = "titulo_pessoa")
+	private String titulo_votacao;
 
-	public int getSessao() {
-		return sessao;
+	public String getTitulo_votacao() {
+		return titulo_votacao;
 	}
 
-	public void setSessao(int sessao) {
-		this.sessao = sessao;
+	public void setTitulo_votacao(String titulo_votacao) {
+		this.titulo_votacao = titulo_votacao;
 	}
 	
 }

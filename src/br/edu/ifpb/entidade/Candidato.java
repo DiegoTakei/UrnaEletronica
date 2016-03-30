@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "tb_candidato")
 @NamedQuery(name = "Candidato.getAll", query = "from Candidato")
 
-public class Candidato extends Pessoa {
+public class Candidato extends Eleitor {
 	
 	@Column(name = "numero_candidato")
 	private int numero;

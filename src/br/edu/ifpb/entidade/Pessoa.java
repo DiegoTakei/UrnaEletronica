@@ -25,8 +25,6 @@ public class Pessoa {
 	@Column(name = "cpf_pessoa")
 	private String cpf;
 	
-	@Column(name = "titulo_pessoa")
-	private String titulo_votacao;
 
 	public int getId() {
 		return id;
@@ -51,15 +49,6 @@ public class Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
-	public String getTitulo_votacao() {
-		return titulo_votacao;
-	}
-
-	public void setTitulo_votacao(String titulo_votacao) {
-		this.titulo_votacao = titulo_votacao;
-	}
-	
 	
 	
 }
