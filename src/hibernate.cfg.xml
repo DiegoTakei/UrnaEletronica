@@ -16,6 +16,13 @@
         <property name="current_session_context_class">thread</property>
 		
 		<mapping class="br.edu.ifpb.entidade.Pessoa"/>
+		<mapping class="br.edu.ifpb.entidade.Eleitor"/>
+		<mapping class="br.edu.ifpb.entidade.Candidato"/>
+		<mapping class="br.edu.ifpb.entidade.Voto"/>
+		<mapping class="br.edu.ifpb.entidade.Urna"/>
+		<mapping class="br.edu.ifpb.entidade.Votacao"/>
+		<mapping class="br.edu.ifpb.entidade.Apuracao"/>
+		
 		
 	</session-factory>
 </hibernate-configuration>
