@@ -10,4 +10,22 @@
 		Cadastro Eleitor
 	</ui:define>
 	
+	<ui:define name="conteudo">
+		<h:panelGrid columns="2" cellpadding="5">
+		
+			<h:outputLabel value="Digite seu nome:"/>
+			<h:inputText value="#{eleitorBean.eleitor.nome}"/>
+			
+			<h:outputLabel value="Digite seu cpf:"/>
+			<p:inputMask value="#{eleitorBean.eleitor.cpf}" mask="999.999.999-99"/>
+			
+			<h:outputLabel value="Digite o número do seu título de eleitor:"/>
+			<p:inputMask value="#{eleitorBean.eleitor.titulo_votacao}" mask="9999.9999.9999"/>
+			
+			<p:growl id="growl" life="2000" />
+			<p:commandButton value="Cadastrar" update="growl" 
+			actionListener="#{eleitorBean.cadastrarEleitor}" styleClass="ui-priority-primary" />
+		</h:panelGrid>
+	</ui:define>
+	
 </ui:composition>

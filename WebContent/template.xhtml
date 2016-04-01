@@ -35,7 +35,17 @@
 
 			<div id="rodape">
 				<ui:insert name="rodape">
-					Rodapé
+					<h:form>
+					    <p:growl id="msgs" showDetail="true" />					 
+								 
+					    <p:fieldset legend="Toggleable" toggleable="true" collapsed="true" toggleSpeed="500">
+					        <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />
+					        <h:panelGrid columns="2" cellpadding="5">
+					            <p:graphicImage name="img/ifpb.png" />
+					            <h:outputText value="Desenvolvido por Diego Takei, José Henrique, Natan Oliveira, Nathã Gabriel"></h:outputText>
+					        </h:panelGrid>
+					    </p:fieldset>
+					</h:form>
 				</ui:insert>
 			</div>
 		</div>
