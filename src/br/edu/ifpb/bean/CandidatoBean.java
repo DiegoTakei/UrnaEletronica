@@ -10,15 +10,21 @@ import br.edu.ifpb.entidade.Candidato;
 @ManagedBean
 public class CandidatoBean {
 	
-	private Candidato candidato = new Candidato();
+	private Candidato candidato;
 	
-	public void cadastrarEleitor(){
-		candidato.setNome("Teste");
-		System.out.println(candidato.getCpf());
-		new CandidatoDAO().insert(candidato);
+	public CandidatoBean() {
+		
+		this.candidato = new Candidato();		
 	}
 	
-	public void deletarEleitor(){
+	public void cadastrarCandidato(){
+		
+		CandidatoDAO candidatoDAO = new CandidatoDAO();
+		candidatoDAO.insert(candidato);
+	}
+	
+	public void deletarCandidato(){
+		
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		candidatoDAO.delete(candidato);
 	}

@@ -19,7 +19,7 @@
 					<h:form>     					 
 					    <p:toolbar>
 					        <f:facet name="left">
-					            <p:commandButton type="button" value="Urna Eletrônica"  action="index.xhtml"/>
+					            <p:button type="button" value="Urna Eletrônica"  outcome="index"/>
 					        </f:facet>
 					 
 					    </p:toolbar>
@@ -41,7 +41,7 @@
 					    <p:fieldset legend="Desenvolvedores" toggleable="true" collapsed="true" toggleSpeed="500">
 					        <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />
 					        <h:panelGrid columns="2" cellpadding="5">
-					            <p:graphicImage name="img/ifpb.png" />
+					            <p:graphicImage value="img/ifpb.png" />
 					            <h:outputText value="Desenvolvido por Diego Takei, José Henrique, Natan Oliveira, Nathã Gabriel"></h:outputText>
 					        </h:panelGrid>
 					    </p:fieldset>
