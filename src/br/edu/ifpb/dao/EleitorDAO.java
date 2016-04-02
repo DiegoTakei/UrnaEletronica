@@ -34,6 +34,34 @@ public class EleitorDAO extends GenericDAO<Eleitor> {
 
 		return eleitores;
 	}
+	
+	public Eleitor getByTitulo(String titulo) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Eleitor eleitor = null;
+		
+		try {
+			
+			String hql = "from Eleitor as a"
+					+ " where a.titulo_votacao = :titulo";
+			
+			Query query = session.createQuery(hql);
+			query.setParameter("titulo", titulo);
+			
+			eleitor = (Eleitor) query.uniqueResult();
+	        
+		} catch (HibernateException hibernateException) {
+			
+			session.getTransaction().rollback();
+			
+		} finally {
+		
+			session.close();
+		}
+		
+		return eleitor;
+	}
 
 	@Override
 	public Eleitor getById(Integer pk) {

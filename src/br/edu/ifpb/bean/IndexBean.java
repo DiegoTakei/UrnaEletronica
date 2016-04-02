@@ -19,4 +19,12 @@ public class IndexBean {
 	public void toIndex() throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 	}
+	
+	public void toDeletar() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().redirect("deletar.xhtml");
+	}
+	
+	public void toEntrarEleicao() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().redirect("entrar-eleicao.xhtml");
+	}
 }

@@ -21,6 +21,9 @@ public class Pessoa {
 	@Column(name = "nome_pessoa")
 	private String nome;
 	
+	@Column(name = "endereco")
+	private String endereco;
+	
 	@Column(name = "cpf_pessoa")
 	private String cpf;
 	
@@ -48,6 +51,13 @@ public class Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}	
 	
 }
