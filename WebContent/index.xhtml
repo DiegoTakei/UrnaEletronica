@@ -4,13 +4,24 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	template="Template.xhtml">
+	template="template.xhtml">
 	
 	<ui:define name="title">
 		Página Principal
 	</ui:define>
 	
 	<ui:define name="conteudo">
-		<h1> Teste JSF</h1>	
+		<p:spacer width="100" height="20" />
+		<h:outputLabel value="Bem-vindo à Urna Eletrônica"/>
+		<p:spacer width="100" height="20" />
+		<h:form>
+		    <p:growl id="messages" showDetail="true"/>
+ 		<p:spacer width="100" height="50" />
+		    <p:menuButton value="Cadastrar">
+		        <p:menuitem value="Eleitor" actionListener="#{indexBean.toCadastrarEleitor}" update="messages" />
+		        <p:menuitem value="Candidato" actionListener="#{indexBean.toCadastrarCandidato}" update="messages"/>
+		    </p:menuButton>
+		</h:form>
+		<p:spacer width="100" height="20" />
 	</ui:define>
 </ui:composition>

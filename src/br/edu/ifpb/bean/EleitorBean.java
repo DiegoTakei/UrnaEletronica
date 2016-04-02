@@ -16,7 +16,7 @@ public class EleitorBean {
 		
 		this.eleitor = new Eleitor();		
 	}
-
+	
 	public void cadastrarEleitor(){
 		
 		EleitorDAO eleitorDAO = new EleitorDAO();
@@ -27,7 +27,6 @@ public class EleitorBean {
 		EleitorDAO eleitorDAO = new EleitorDAO();
 		eleitorDAO.delete(eleitor);
 	}
-	
 	
 	public Eleitor getEleitor() {
 		return eleitor;
