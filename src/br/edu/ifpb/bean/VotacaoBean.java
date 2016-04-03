@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import br.edu.ifpb.dao.CandidatoDAO;
@@ -15,13 +15,13 @@ import br.edu.ifpb.entidade.Eleitor;
 import br.edu.ifpb.entidade.Voto;
 
 
-@RequestScoped
+@SessionScoped
 @ManagedBean	
 public class VotacaoBean {
 	
 	Eleitor eleitor;
 	Candidato candidato;
-	Voto voto;
+	Voto voto;  
 	
 	public VotacaoBean() {
 		
@@ -35,6 +35,7 @@ public class VotacaoBean {
 		Eleitor eleitor_aux = eleitorDAO.getByTitulo(eleitor.getTitulo_votacao());
 		
 		if(eleitor_aux!=null){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
 		}else{
 			System.out.println("É nulo");
@@ -45,6 +46,8 @@ public class VotacaoBean {
 		Date data = new Date();
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		
+		eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
+
 		Candidato candidato = candidatoDAO.getByNumero(voto.getVoto_candidato());
 		
 		voto.setData(data);
@@ -56,6 +59,14 @@ public class VotacaoBean {
 		
 		VotoDAO votoDAO = new VotoDAO();
 		votoDAO.insert(voto);	
+		
+	}
+	
+	public void votar_branco(){
+		
+	}
+	
+	public void encerrar_eleicao(){
 		
 	}
 
@@ -74,9 +85,8 @@ public class VotacaoBean {
 	public void setVoto(Voto voto) {
 		this.voto = voto;
 	}
-	
-	
-	
-	
+
 }
+	
+
 	
