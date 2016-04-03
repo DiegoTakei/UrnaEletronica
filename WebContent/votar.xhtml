@@ -14,11 +14,11 @@
 		<h:form>
 			<p:panel>
 				<h2>Meu voto: </h2>
-				<p:inputMask value="#{eleitorBean.eleitor.titulo_votacao}" mask="9999.9999.9999"/>
+				<p:inputText value="#{votacaoBean.voto.voto_candidato}"/>
 				
 				<p:growl id="growl" life="2000" />
 				<p:commandButton value="Votar" update="growl" 
-					actionListener="#{eleitorBean.verificarTitulo}" styleClass="ui-priority-primary" />
+					actionListener="#{votacaoBean.votar}" styleClass="ui-priority-primary" />
 			</p:panel>
 		</h:form>
 	</ui:define>

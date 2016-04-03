@@ -34,6 +34,34 @@ public class CandidatoDAO extends GenericDAO<Candidato> {
 
 		return candidatos;
 	}
+	
+	public Candidato getByNumero(int numero) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Candidato candidato = null;
+		
+		try {
+			
+			String hql = "from Candidato as a"
+					+ " where a.numero = :numero";
+			
+			Query query = session.createQuery(hql);
+			query.setParameter("numero", numero);
+			
+			candidato = (Candidato) query.uniqueResult();
+	        
+		} catch (HibernateException hibernateException) {
+			
+			session.getTransaction().rollback();
+			
+		} finally {
+		
+			session.close();
+		}
+		
+		return candidato;
+	}
 
 	@Override
 	public Candidato getById(Integer pk) {

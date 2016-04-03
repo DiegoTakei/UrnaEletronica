@@ -1,6 +1,7 @@
 package br.edu.ifpb.entidade;
-import java.sql.Date;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Voto{
 	@Column(name = "id_voto")
 	private int id;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "eleitor_FK")
 	private Eleitor eleitor;
 	
@@ -37,6 +38,8 @@ public class Voto{
 	
 	@Column(name = "data")
 	private Date data;
+	
+	private int voto_candidato;
 	
 	
 
@@ -71,5 +74,20 @@ public class Voto{
 	public void setData(Date data) {
 		this.data = data;
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getVoto_candidato() {
+		return voto_candidato;
+	}
+
+	public void setVoto_candidato(int voto_candidato) {
+		this.voto_candidato = voto_candidato;
+	}	
 }
