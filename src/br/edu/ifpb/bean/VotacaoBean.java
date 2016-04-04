@@ -2,6 +2,7 @@ package br.edu.ifpb.bean;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -39,6 +40,19 @@ public class VotacaoBean {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
 		}else{
 			System.out.println("É nulo");
+		}
+		
+		VotoDAO votoDAO = new VotoDAO();
+		List<Voto> voto_aux = votoDAO.getByVoto(eleitor_aux.getId());
+		System.out.println("teste");
+		if(voto_aux == null){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
+			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
+		}else if(voto_aux.size() < 4){
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
+			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
+		}else{
+			System.out.println("nulo");
 		}
 	}
 	
