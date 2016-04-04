@@ -1,54 +1,29 @@
 package br.edu.ifpb.entidade;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "tb_apuracao")
-@NamedQuery(name = "Apuracao.getAll", query = "from Apuracao")
 public class Apuracao {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_pessoa")
+	
 	private int id;
 	
-
-	@Column(name = "qnt_votos")
 	private int qnt_votos;
-	
-	
-	@Column(name = "qnt_brancos")
+
 	private int qnt_brancos;
 	
-	
-	@Column(name = "qnt_nulos")
 	private int qnt_nulos;
 	
-	
-	@Column(name = "qnt_ausentes")
 	private int qnt_ausentes;
 	
-	
-	@Column(name = "cadidato_mais_votado")
-	private int candidato_mais_votado;
+	private Candidato candidato_mais_votado;
 	
 	
-	@Column(name = "cadidato_menos_votado")
-	private int candidato_menos_votado;
+	private Candidato candidato_menos_votado;
 	
 	
-	@Column(name = "cadidato_eleito")
-	private int candidato_eleito;
+	private Candidato candidato_eleito;
 	
 	
-	@Column(name = "candidatos_segundo_turno")
-	private int candidatos_segundo_turno;
+	private Candidato candidatos_segundo_turno;
 	
 	
 	
@@ -92,35 +67,35 @@ public class Apuracao {
 		this.qnt_ausentes = qnt_ausentes;
 	}
 
-	public int getCandidato_mais_votado() {
+	public Candidato getCandidato_mais_votado() {
 		return candidato_mais_votado;
 	}
 
-	public void setCandidato_mais_votado(int candidato_mais_votado) {
+	public void setCandidato_mais_votado(Candidato candidato_mais_votado) {
 		this.candidato_mais_votado = candidato_mais_votado;
 	}
 
-	public int getCandidato_menos_votado() {
+	public Candidato getCandidato_menos_votado() {
 		return candidato_menos_votado;
 	}
 
-	public void setCandidato_menos_votado(int candidato_menos_votado) {
+	public void setCandidato_menos_votado(Candidato candidato_menos_votado) {
 		this.candidato_menos_votado = candidato_menos_votado;
 	}
 
-	public int getCandidato_eleito() {
+	public Candidato getCandidato_eleito() {
 		return candidato_eleito;
 	}
 
-	public void setCandidato_eleito(int candidato_eleito) {
+	public void setCandidato_eleito(Candidato candidato_eleito) {
 		this.candidato_eleito = candidato_eleito;
 	}
 
-	public int getCandidatos_segundo_turno() {
+	public Candidato getCandidatos_segundo_turno() {
 		return candidatos_segundo_turno;
 	}
 
-	public void setCandidatos_segundo_turno(int candidatos_segundo_turno) {
+	public void setCandidatos_segundo_turno(Candidato candidatos_segundo_turno) {
 		this.candidatos_segundo_turno = candidatos_segundo_turno;
 	}
 

@@ -39,6 +39,7 @@ public class Voto{
 	@Column(name = "data")
 	private Date data;
 	
+	@Column(name="voto")
 	private int voto_candidato;
 	
 	

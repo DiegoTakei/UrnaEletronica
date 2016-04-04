@@ -56,6 +56,7 @@ public class VotoDAO extends GenericDAO<Voto> {
 		return voto;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Voto> getByVoto(int id) {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -65,7 +66,7 @@ public class VotoDAO extends GenericDAO<Voto> {
 		try {
 
 			String hql = "from Voto as a"
-					+ " where a.eleitor = :id";
+					+ " where a.eleitor.id = :id";
 
 			Query query = session.createQuery(hql);
 			query.setParameter("id", id);
@@ -82,5 +83,34 @@ public class VotoDAO extends GenericDAO<Voto> {
 		}
 
 		return votos;
+	}
+
+	@SuppressWarnings("unchecked")
+	public int getVotosCandidato(int numero) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		List <Voto> votos = null;
+
+		try {
+
+			String hql = "from Voto as a"
+					+ " where a.voto = :numero";
+
+			Query query = session.createQuery(hql);
+			query.setParameter("numero", numero);
+
+			votos = (List<Voto>) query.list();
+
+		} catch (HibernateException hibernateException) {
+
+			session.getTransaction().rollback();
+
+		} finally {
+
+			session.close();
+		}
+
+		return votos.size();
 	}
 }

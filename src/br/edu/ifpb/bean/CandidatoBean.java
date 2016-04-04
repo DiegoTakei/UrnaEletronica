@@ -1,7 +1,10 @@
 package br.edu.ifpb.bean;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import br.edu.ifpb.dao.CandidatoDAO;
 import br.edu.ifpb.entidade.Candidato;
@@ -17,16 +20,18 @@ public class CandidatoBean {
 		this.candidato = new Candidato();		
 	}
 	
-	public void cadastrarCandidato(){
+	public void cadastrarCandidato() throws IOException{
 		
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		candidatoDAO.insert(candidato);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 	}
 	
-	public void deletarCandidato(){
+	public void deletarCandidato() throws IOException{
 		
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		candidatoDAO.delete(candidato);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 	}
 
 	public Candidato getCandidato() {

@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import br.edu.ifpb.dao.CandidatoDAO;
 import br.edu.ifpb.dao.EleitorDAO;
 import br.edu.ifpb.dao.VotoDAO;
+import br.edu.ifpb.entidade.Apuracao;
 import br.edu.ifpb.entidade.Candidato;
 import br.edu.ifpb.entidade.Eleitor;
 import br.edu.ifpb.entidade.Voto;
@@ -35,25 +36,15 @@ public class VotacaoBean {
 		EleitorDAO eleitorDAO = new EleitorDAO();
 		Eleitor eleitor_aux = eleitorDAO.getByTitulo(eleitor.getTitulo_votacao());
 		
-		if(eleitor_aux!=null){
+		VotoDAO votoDAO = new VotoDAO();
+		List<Voto> voto_aux = votoDAO.getByVoto(eleitor_aux.getId());
+			
+		if((eleitor_aux!=null)&&(voto_aux.size()==0)){
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
 		}else{
 			System.out.println("É nulo");
 		}
-		
-		/*VotoDAO votoDAO = new VotoDAO();
-		List<Voto> voto_aux = votoDAO.getByVoto(eleitor_aux.getId());
-		System.out.println("teste");
-		if(voto_aux == null){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
-		}else if(voto_aux.size() < 4){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
-		}else{
-			System.out.println("nulo");
-		}*/
 	}
 	
 	public void votar(){			
@@ -70,13 +61,10 @@ public class VotacaoBean {
 			voto.setData(data);
 			voto.setEleitor(eleitor);
 			voto.setCandidato(candidato);
-			
-			System.out.println(eleitor.getId());
-			System.out.println(candidato.getId());
-			
+
 			VotoDAO votoDAO = new VotoDAO();
 			votoDAO.insert(voto);
-			
+			System.out.println("ok");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-governador.xhtml");
 	 }
 	 
@@ -91,10 +79,7 @@ public class VotacaoBean {
 			voto.setData(data);
 			voto.setEleitor(eleitor);
 			voto.setCandidato(candidato);
-			
-			System.out.println(eleitor.getId());
-			System.out.println(candidato.getId());
-			
+	
 			VotoDAO votoDAO = new VotoDAO();
 			votoDAO.insert(voto);
 			
@@ -112,13 +97,10 @@ public class VotacaoBean {
 		voto.setEleitor(eleitor);
 		voto.setCandidato(candidato);
 		
-		System.out.println(eleitor.getId());
-		System.out.println(candidato.getId());
-		
 		VotoDAO votoDAO = new VotoDAO();
 		votoDAO.insert(voto);
 		
-		FacesContext.getCurrentInstance().getExternalContext().redirect("entar-eleicao.xhtml");	
+		FacesContext.getCurrentInstance().getExternalContext().redirect("entrar-eleicao.xhtml");	
 	}
 	
 	
@@ -131,10 +113,7 @@ public class VotacaoBean {
 		voto.setEleitor(eleitor);
 		voto.setCandidato(null);
 		voto.setVoto_candidato(0);
-		
-		System.out.println(eleitor.getId());
-		System.out.println(candidato.getId());
-		
+			
 		VotoDAO votoDAO = new VotoDAO();
 		votoDAO.insert(voto);	
 		
@@ -142,8 +121,26 @@ public class VotacaoBean {
 	
 	public void encerrar_eleicao(){
 		
-	
+		CandidatoDAO candidatoDAO = new CandidatoDAO();
+		VotoDAO votoDAO = new VotoDAO();
+		Apuracao apuracao = new Apuracao();
 		
+		apuracao.setQnt_votos(votoDAO.getAll().size());
+		
+		List<Candidato> candidatos = candidatoDAO.getAllCandidatos();
+		System.out.println("deu certo");
+			
+		for (Candidato candidato_aux : candidatos) {
+			candidato_aux.setNum_votos(votoDAO.getVotosCandidato(candidato_aux.getNumero()));
+			
+			if(apuracao.getCandidato_mais_votado().getNum_votos() < candidato_aux.getNum_votos()){
+				apuracao.setCandidato_eleito(candidato_aux);
+				
+			}else if(apuracao.getCandidato_menos_votado().getNum_votos() > candidato_aux.getNum_votos())
+				apuracao.setCandidato_menos_votado(candidato_aux);
+		}
+		
+		System.out.println("deu certo");
 	}
 
 	public Eleitor getEleitor() {

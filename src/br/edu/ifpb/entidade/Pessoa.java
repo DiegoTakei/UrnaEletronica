@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_pessoa")
 @NamedQuery(name = "Pessoa.getAll", query = "from Pessoa")
-public class Pessoa {
+public abstract class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
