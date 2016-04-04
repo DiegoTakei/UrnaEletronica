@@ -42,7 +42,7 @@ public class VotacaoBean {
 			System.out.println("É nulo");
 		}
 		
-		VotoDAO votoDAO = new VotoDAO();
+		/*VotoDAO votoDAO = new VotoDAO();
 		List<Voto> voto_aux = votoDAO.getByVoto(eleitor_aux.getId());
 		System.out.println("teste");
 		if(voto_aux == null){
@@ -53,10 +53,54 @@ public class VotacaoBean {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
 		}else{
 			System.out.println("nulo");
-		}
+		}*/
 	}
 	
-	public void votar(){
+	public void votar(){			
+		
+	}
+	 public void votarPrefeito() throws IOException{
+		 Date data = new Date();
+			CandidatoDAO candidatoDAO = new CandidatoDAO();
+			
+			eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
+
+			Candidato candidato = candidatoDAO.getByNumero(voto.getVoto_candidato());
+			
+			voto.setData(data);
+			voto.setEleitor(eleitor);
+			voto.setCandidato(candidato);
+			
+			System.out.println(eleitor.getId());
+			System.out.println(candidato.getId());
+			
+			VotoDAO votoDAO = new VotoDAO();
+			votoDAO.insert(voto);
+			
+			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-governador.xhtml");
+	 }
+	 
+	 public void votarGovernador() throws IOException{
+		 Date data = new Date();
+			CandidatoDAO candidatoDAO = new CandidatoDAO();
+			
+			eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
+
+			Candidato candidato = candidatoDAO.getByNumero(voto.getVoto_candidato());
+			
+			voto.setData(data);
+			voto.setEleitor(eleitor);
+			voto.setCandidato(candidato);
+			
+			System.out.println(eleitor.getId());
+			System.out.println(candidato.getId());
+			
+			VotoDAO votoDAO = new VotoDAO();
+			votoDAO.insert(voto);
+			
+			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-presidente.xhtml");
+	 }
+	public void votarPresidente() throws IOException{
 		Date data = new Date();
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		
@@ -72,9 +116,11 @@ public class VotacaoBean {
 		System.out.println(candidato.getId());
 		
 		VotoDAO votoDAO = new VotoDAO();
-		votoDAO.insert(voto);	
+		votoDAO.insert(voto);
 		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("entar-eleicao.xhtml");	
 	}
+	
 	
 	public void votar_branco(){
 		Date data = new Date();
