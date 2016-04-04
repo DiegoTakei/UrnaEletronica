@@ -32,8 +32,10 @@
 				<h:outputLabel value="Digite seu cargo:"/>
 	       	    <p:selectOneMenu id="cargo" value="#{candidatoBean.candidato.cargo}" style="width:200px">
 		            <f:selectItem itemLabel="Selecione o cargo" itemValue="" />
+		          
 		            <f:selectItem itemLabel="Presidente" itemValue="Presidente" />
 		            <f:selectItem itemLabel="Governador" itemValue="Governador" />
+		            <f:selectItem itemLabel="Prefeito" itemValue="Prefeito" />
 	        	</p:selectOneMenu>
 				
 				<p:growl id="growl" life="2000" />
