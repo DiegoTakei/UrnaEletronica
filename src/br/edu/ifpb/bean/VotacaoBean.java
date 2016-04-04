@@ -63,10 +63,26 @@ public class VotacaoBean {
 	}
 	
 	public void votar_branco(){
+		Date data = new Date();
+		
+		eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
+				
+		voto.setData(data);
+		voto.setEleitor(eleitor);
+		voto.setCandidato(null);
+		voto.setVoto_candidato(0);
+		
+		System.out.println(eleitor.getId());
+		System.out.println(candidato.getId());
+		
+		VotoDAO votoDAO = new VotoDAO();
+		votoDAO.insert(voto);	
 		
 	}
 	
 	public void encerrar_eleicao(){
+		
+	
 		
 	}
 
