@@ -19,7 +19,6 @@ public class ApuracaoBean {
 	public ApuracaoBean(){
 		this.apuracao = new Apuracao();
 	}
-	
 	public void encerrar_eleicao() throws IOException{
 		
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
