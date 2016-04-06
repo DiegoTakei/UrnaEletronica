@@ -116,4 +116,35 @@ public class VotoDAO extends GenericDAO<Voto> {
 		
 		return votos.size();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public int getVotosEmBranco(){
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		List <Voto> votos = null;
+
+		try {
+
+			String hql = "from Voto as a"
+					+ " where a.votoCandidato = :numero";
+
+			Query query = session.createQuery(hql);
+			query.setParameter("numero", 0);
+
+			votos = (List<Voto>) query.list();
+
+		} catch (HibernateException hibernateException) {
+
+			session.getTransaction().rollback();
+
+		} finally {
+
+			session.close();
+		}
+		if (votos ==  null)
+			return 0;
+		
+		return votos.size();
+	}
 }

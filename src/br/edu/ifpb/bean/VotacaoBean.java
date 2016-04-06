@@ -85,7 +85,7 @@ public class VotacaoBean {
 		
 		eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
 
-		Candidato candidato = candidatoDAO.getByNumero(voto.getVoto_candidato());
+		Candidato candidato = candidatoDAO.getByNumero(voto.getVotoCandidato());
 		
 		switch (cont) {
 		case 3:
@@ -132,7 +132,7 @@ public class VotacaoBean {
 		voto.setData(data);
 		voto.setEleitor(null);
 		voto.setCandidato(null);
-		voto.setVoto_candidato(0);
+		voto.setVotoCandidato(0);
 			
 		VotoDAO votoDAO = new VotoDAO();
 		votoDAO.insert(voto);

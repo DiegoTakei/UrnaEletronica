@@ -94,6 +94,7 @@ public class ApuracaoBean {
 		apuracao.setPrefeito_eleito(apuracao.getPrefeito_mais_votado());
 		apuracao.setGovernador_eleito(apuracao.getGovernador_mais_votado());
 		apuracao.setPresidente_eleito(apuracao.getPresidente_mais_votado());
+		apuracao.setQnt_brancos(votoDAO.getVotosEmBranco());
 		
 		FacesContext.getCurrentInstance().getExternalContext().redirect("resultado.xhtml");
 	}

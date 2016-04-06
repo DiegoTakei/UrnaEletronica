@@ -40,7 +40,7 @@ public class Voto{
 	private Date data;
 	
 	@Column(name="voto")
-	private int voto_candidato;
+	private int votoCandidato;
 	
 	@Column(name = "cargo")
 	private String cargo;
@@ -87,21 +87,20 @@ public class Voto{
 		this.id = id;
 	}
 
-	public int getVoto_candidato() {
-		return voto_candidato;
-	}
-
-	public void setVoto_candidato(int voto_candidato) {
-		this.voto_candidato = voto_candidato;
-	}
-
 	public String getCargo() {
 		return cargo;
 	}
 
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
+	}
+
+	public int getVotoCandidato() {
+		return votoCandidato;
+	}
+
+	public void setVotoCandidato(int votoCandidato) {
+		this.votoCandidato = votoCandidato;
 	}	
-	
-	
+		
 }
