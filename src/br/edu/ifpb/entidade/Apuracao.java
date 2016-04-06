@@ -46,7 +46,6 @@ public class Apuracao {
 	public int getQuantidadeVotos() {
 		return QuantidadeVotos;
 	}
-
 	public void setQuantidadeVotos(int quantidadeVotos) {
 		QuantidadeVotos = quantidadeVotos;
 	}
