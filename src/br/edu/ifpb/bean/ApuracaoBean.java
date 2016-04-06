@@ -19,7 +19,7 @@ public class ApuracaoBean {
 	public ApuracaoBean(){
 		this.apuracao = new Apuracao();
 	}
-	public void encerrar_eleicao() throws IOException{
+	public void encerrarEleicao() throws IOException{
 		
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		VotoDAO votoDAO = new VotoDAO();
@@ -35,51 +35,51 @@ public class ApuracaoBean {
 			
 			switch (candidato_aux.getCargo()) {
 			case "Prefeito":
-				candidato_aux.setNum_votos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
+				candidato_aux.setNumVotos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
 				
 				if(apuracao.getPrefeitoMaisVotado()== null)
 					apuracao.setPrefeitoMaisVotado(candidato_aux);
 				
-				else if(apuracao.getPrefeitoMaisVotado().getNum_votos() < candidato_aux.getNum_votos()){
+				else if(apuracao.getPrefeitoMaisVotado().getNumVotos() < candidato_aux.getNumVotos()){
 					apuracao.setPrefeitoEleito(candidato_aux);
 						
 				}else if (apuracao.getPrefeitoMenosVotado()== null) 
 					apuracao.setPrefeitoMenosVotado(candidato_aux);
 				
-				else if	(apuracao.getPrefeitoMenosVotado().getNum_votos() > candidato_aux.getNum_votos())
+				else if	(apuracao.getPrefeitoMenosVotado().getNumVotos() > candidato_aux.getNumVotos())
 					apuracao.setPrefeitoMenosVotado(candidato_aux);
 				
 				break;
 			
 			case "Governador":
 				
-				candidato_aux.setNum_votos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
+				candidato_aux.setNumVotos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
 				
 				if(apuracao.getGovernadorMaisVotado()== null)
 					apuracao.setGovernadorMaisVotado(candidato_aux);
 				
-				else if(apuracao.getGovernadorMaisVotado().getNum_votos() < candidato_aux.getNum_votos()){
+				else if(apuracao.getGovernadorMaisVotado().getNumVotos() < candidato_aux.getNumVotos()){
 					apuracao.setGovernadorEleito(candidato_aux);
 						
 				}else if (apuracao.getGovernadorMenosVotado()== null) 
 					apuracao.setGovernadorMenosVotado(candidato_aux);
-				else if	(apuracao.getGovernadorMenosVotado().getNum_votos() > candidato_aux.getNum_votos())
+				else if	(apuracao.getGovernadorMenosVotado().getNumVotos() > candidato_aux.getNumVotos())
 					apuracao.setGovernadorMenosVotado(candidato_aux);
 				break;
 				
 			case "Presidente":
 				
-				candidato_aux.setNum_votos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
+				candidato_aux.setNumVotos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
 				
 				if(apuracao.getPresidenteMaisVotado()== null)
 					apuracao.setPresidenteMaisVotado(candidato_aux);
 				
-				else if(apuracao.getPresidenteMaisVotado().getNum_votos() < candidato_aux.getNum_votos()){
+				else if(apuracao.getPresidenteMaisVotado().getNumVotos() < candidato_aux.getNumVotos()){
 					apuracao.setPrefeitoEleito(candidato_aux);
 						
 				}else if (apuracao.getPresidenteMenosVotado()== null) 
 						apuracao.setPresidenteMenosVotado(candidato_aux);
-					else if	(apuracao.getPresidenteMenosVotado().getNum_votos() > candidato_aux.getNum_votos())
+					else if	(apuracao.getPresidenteMenosVotado().getNumVotos() > candidato_aux.getNumVotos())
 						apuracao.setPresidenteMenosVotado(candidato_aux);
 				
 				break;

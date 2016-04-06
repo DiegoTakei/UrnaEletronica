@@ -53,7 +53,7 @@ public class VotacaoBean {
 
 	public void verificarTitulo() throws IOException{
 		EleitorDAO eleitorDAO = new EleitorDAO();
-		Eleitor eleitor_aux = eleitorDAO.getByTitulo(eleitor.getTitulo_votacao());
+		Eleitor eleitor_aux = eleitorDAO.getByTitulo(eleitor.getTituloVotacao());
 			
 		if(eleitor_aux!=null){
 
@@ -126,7 +126,7 @@ public class VotacaoBean {
 		votoDAO.insert(voto);
 	}
 	
-	public void votar_branco() throws IOException{
+	public void votarBranco() throws IOException{
 		Date data = new Date();
 		
 		voto.setData(data);

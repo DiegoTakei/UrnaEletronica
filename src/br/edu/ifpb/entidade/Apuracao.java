@@ -6,33 +6,33 @@ public class Apuracao {
 	
 	private int id;
 	
-	private int QuantidadeVotos;
+	private int quantidadeVotos;
 
-	private int QuantidadeBrancos;
+	private int quantidadeBrancos;
 	
-	private int QuantidadeNulos;
+	private int quantidadeNulos;
 	
-	private int QuantidadeAusentes;
+	private int quantidadeAusentes;
 	
-	private Candidato PrefeitoMaisVotado;
+	private Candidato prefeitoMaisVotado;
 	
-	private Candidato GovernadorMaisVotado;
+	private Candidato governadorMaisVotado;
 	
-	private Candidato PresidenteMaisVotado;
+	private Candidato presidenteMaisVotado;
 	
-	private Candidato PrefeitoMenosVotado;
+	private Candidato prefeitoMenosVotado;
 	
-	private Candidato GovernadorMenosVotado;
+	private Candidato governadorMenosVotado;
 	
-	private Candidato PresidenteMenosVotado;
+	private Candidato presidenteMenosVotado;
 	
 	private Candidato prefeitoEleito;
 	
-	private Candidato GovernadorEleito;
+	private Candidato governadorEleito;
 	
-	private Candidato PresidenteEleito;	
+	private Candidato presidenteEleito;	
 	
-	private Candidato CandidatosSegundoTurno;
+	private Candidato candidatosSegundoTurno;
 	
 
 	public int getId() {
@@ -44,82 +44,83 @@ public class Apuracao {
 	}
 
 	public int getQuantidadeVotos() {
-		return QuantidadeVotos;
+		return quantidadeVotos;
 	}
+
 	public void setQuantidadeVotos(int quantidadeVotos) {
-		QuantidadeVotos = quantidadeVotos;
+		this.quantidadeVotos = quantidadeVotos;
 	}
 
 	public int getQuantidadeBrancos() {
-		return QuantidadeBrancos;
+		return quantidadeBrancos;
 	}
 
 	public void setQuantidadeBrancos(int quantidadeBrancos) {
-		QuantidadeBrancos = quantidadeBrancos;
+		this.quantidadeBrancos = quantidadeBrancos;
 	}
 
 	public int getQuantidadeNulos() {
-		return QuantidadeNulos;
+		return quantidadeNulos;
 	}
 
 	public void setQuantidadeNulos(int quantidadeNulos) {
-		QuantidadeNulos = quantidadeNulos;
+		this.quantidadeNulos = quantidadeNulos;
 	}
 
 	public int getQuantidadeAusentes() {
-		return QuantidadeAusentes;
+		return quantidadeAusentes;
 	}
 
 	public void setQuantidadeAusentes(int quantidadeAusentes) {
-		QuantidadeAusentes = quantidadeAusentes;
+		this.quantidadeAusentes = quantidadeAusentes;
 	}
 
 	public Candidato getPrefeitoMaisVotado() {
-		return PrefeitoMaisVotado;
+		return prefeitoMaisVotado;
 	}
 
 	public void setPrefeitoMaisVotado(Candidato prefeitoMaisVotado) {
-		PrefeitoMaisVotado = prefeitoMaisVotado;
+		this.prefeitoMaisVotado = prefeitoMaisVotado;
 	}
 
 	public Candidato getGovernadorMaisVotado() {
-		return GovernadorMaisVotado;
+		return governadorMaisVotado;
 	}
 
 	public void setGovernadorMaisVotado(Candidato governadorMaisVotado) {
-		GovernadorMaisVotado = governadorMaisVotado;
+		this.governadorMaisVotado = governadorMaisVotado;
 	}
 
 	public Candidato getPresidenteMaisVotado() {
-		return PresidenteMaisVotado;
+		return presidenteMaisVotado;
 	}
 
 	public void setPresidenteMaisVotado(Candidato presidenteMaisVotado) {
-		PresidenteMaisVotado = presidenteMaisVotado;
+		this.presidenteMaisVotado = presidenteMaisVotado;
 	}
 
 	public Candidato getPrefeitoMenosVotado() {
-		return PrefeitoMenosVotado;
+		return prefeitoMenosVotado;
 	}
 
 	public void setPrefeitoMenosVotado(Candidato prefeitoMenosVotado) {
-		PrefeitoMenosVotado = prefeitoMenosVotado;
+		this.prefeitoMenosVotado = prefeitoMenosVotado;
 	}
 
 	public Candidato getGovernadorMenosVotado() {
-		return GovernadorMenosVotado;
+		return governadorMenosVotado;
 	}
 
 	public void setGovernadorMenosVotado(Candidato governadorMenosVotado) {
-		GovernadorMenosVotado = governadorMenosVotado;
+		this.governadorMenosVotado = governadorMenosVotado;
 	}
 
 	public Candidato getPresidenteMenosVotado() {
-		return PresidenteMenosVotado;
+		return presidenteMenosVotado;
 	}
 
 	public void setPresidenteMenosVotado(Candidato presidenteMenosVotado) {
-		PresidenteMenosVotado = presidenteMenosVotado;
+		this.presidenteMenosVotado = presidenteMenosVotado;
 	}
 
 	public Candidato getPrefeitoEleito() {
@@ -131,28 +132,30 @@ public class Apuracao {
 	}
 
 	public Candidato getGovernadorEleito() {
-		return GovernadorEleito;
+		return governadorEleito;
 	}
 
 	public void setGovernadorEleito(Candidato governadorEleito) {
-		GovernadorEleito = governadorEleito;
+		this.governadorEleito = governadorEleito;
 	}
 
 	public Candidato getPresidenteEleito() {
-		return PresidenteEleito;
+		return presidenteEleito;
 	}
 
 	public void setPresidenteEleito(Candidato presidenteEleito) {
-		PresidenteEleito = presidenteEleito;
+		this.presidenteEleito = presidenteEleito;
 	}
 
 	public Candidato getCandidatosSegundoTurno() {
-		return CandidatosSegundoTurno;
+		return candidatosSegundoTurno;
 	}
 
 	public void setCandidatosSegundoTurno(Candidato candidatosSegundoTurno) {
-		CandidatosSegundoTurno = candidatosSegundoTurno;
+		this.candidatosSegundoTurno = candidatosSegundoTurno;
 	}
+
+	
 	
 
 }
