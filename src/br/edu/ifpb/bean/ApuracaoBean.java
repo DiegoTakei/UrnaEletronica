@@ -25,7 +25,7 @@ public class ApuracaoBean {
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		VotoDAO votoDAO = new VotoDAO();
 		
-		apuracao.setQnt_votos(votoDAO.getAll().size());
+		apuracao.setQuantidadeVotos(votoDAO.getAll().size());
 		
 		List<Candidato> candidatos = candidatoDAO.getAllCandidatos();
 		System.out.println("deu certo");
@@ -38,17 +38,17 @@ public class ApuracaoBean {
 			case "Prefeito":
 				candidato_aux.setNum_votos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
 				
-				if(apuracao.getPrefeito_mais_votado()== null)
-					apuracao.setPrefeito_mais_votado(candidato_aux);
+				if(apuracao.getPrefeitoMaisVotado()== null)
+					apuracao.setPrefeitoMaisVotado(candidato_aux);
 				
-				else if(apuracao.getPrefeito_mais_votado().getNum_votos() < candidato_aux.getNum_votos()){
-					apuracao.setPrefeito_eleito(candidato_aux);
+				else if(apuracao.getPrefeitoMaisVotado().getNum_votos() < candidato_aux.getNum_votos()){
+					apuracao.setPrefeitoEleito(candidato_aux);
 						
-				}else if (apuracao.getPrefeito_menos_votado()== null) 
-					apuracao.setPrefeito_menos_votado(candidato_aux);
+				}else if (apuracao.getPrefeitoMenosVotado()== null) 
+					apuracao.setPrefeitoMenosVotado(candidato_aux);
 				
-				else if	(apuracao.getPresidente_menos_votado().getNum_votos() > candidato_aux.getNum_votos())
-					apuracao.setPrefeito_menos_votado(candidato_aux);
+				else if	(apuracao.getPrefeitoMenosVotado().getNum_votos() > candidato_aux.getNum_votos())
+					apuracao.setPrefeitoMenosVotado(candidato_aux);
 				
 				break;
 			
@@ -56,32 +56,32 @@ public class ApuracaoBean {
 				
 				candidato_aux.setNum_votos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
 				
-				if(apuracao.getGovernador_mais_votado()== null)
-					apuracao.setGovernador_mais_votado(candidato_aux);
+				if(apuracao.getGovernadorMaisVotado()== null)
+					apuracao.setGovernadorMaisVotado(candidato_aux);
 				
-				else if(apuracao.getGovernador_mais_votado().getNum_votos() < candidato_aux.getNum_votos()){
-					apuracao.setGovernador_eleito(candidato_aux);
+				else if(apuracao.getGovernadorMaisVotado().getNum_votos() < candidato_aux.getNum_votos()){
+					apuracao.setGovernadorEleito(candidato_aux);
 						
-				}else if (apuracao.getGovernador_menos_votado()== null) 
-					apuracao.setPresidente_menos_votado(candidato_aux);
-				else if	(apuracao.getGovernador_menos_votado().getNum_votos() > candidato_aux.getNum_votos())
-					apuracao.setGovernador_menos_votado(candidato_aux);
+				}else if (apuracao.getGovernadorMenosVotado()== null) 
+					apuracao.setGovernadorMenosVotado(candidato_aux);
+				else if	(apuracao.getGovernadorMenosVotado().getNum_votos() > candidato_aux.getNum_votos())
+					apuracao.setGovernadorMenosVotado(candidato_aux);
 				break;
 				
 			case "Presidente":
 				
 				candidato_aux.setNum_votos(votoDAO.getVotosCandidato(candidato_aux.getNumero(),candidato_aux.getCargo()));
 				
-				if(apuracao.getPresidente_mais_votado()== null)
-					apuracao.setPresidente_mais_votado(candidato_aux);
+				if(apuracao.getPresidenteMaisVotado()== null)
+					apuracao.setPresidenteMaisVotado(candidato_aux);
 				
-				else if(apuracao.getPresidente_mais_votado().getNum_votos() < candidato_aux.getNum_votos()){
-					apuracao.setPresidente_eleito(candidato_aux);
+				else if(apuracao.getPresidenteMaisVotado().getNum_votos() < candidato_aux.getNum_votos()){
+					apuracao.setPrefeitoEleito(candidato_aux);
 						
-				}else if (apuracao.getPresidente_menos_votado()== null) 
-						apuracao.setPresidente_menos_votado(candidato_aux);
-					else if	(apuracao.getPresidente_menos_votado().getNum_votos() > candidato_aux.getNum_votos())
-						apuracao.setPresidente_menos_votado(candidato_aux);
+				}else if (apuracao.getPresidenteMenosVotado()== null) 
+						apuracao.setPresidenteMenosVotado(candidato_aux);
+					else if	(apuracao.getPresidenteMenosVotado().getNum_votos() > candidato_aux.getNum_votos())
+						apuracao.setPresidenteMenosVotado(candidato_aux);
 				
 				break;
 
@@ -91,10 +91,10 @@ public class ApuracaoBean {
 			
 		}
 	
-		apuracao.setPrefeito_eleito(apuracao.getPrefeito_mais_votado());
-		apuracao.setGovernador_eleito(apuracao.getGovernador_mais_votado());
-		apuracao.setPresidente_eleito(apuracao.getPresidente_mais_votado());
-		apuracao.setQnt_brancos(votoDAO.getVotosEmBranco());
+		apuracao.setPrefeitoEleito(apuracao.getPrefeitoMaisVotado());
+		apuracao.setGovernadorEleito(apuracao.getGovernadorMaisVotado());
+		apuracao.setPrefeitoEleito(apuracao.getPresidenteMaisVotado());
+		apuracao.setQuantidadeBrancos(votoDAO.getVotosEmBranco());
 		
 		FacesContext.getCurrentInstance().getExternalContext().redirect("resultado.xhtml");
 	}
@@ -109,3 +109,4 @@ public class ApuracaoBean {
 	
 	
 }
+
