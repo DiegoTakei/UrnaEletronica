@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
+	
+	<ui:define name="title">
+		Resultado
+	</ui:define>
+	
+	<ui:define name="conteudo">
+		<p:panel>
+			<h:outputText value="Prefeito Eleito" />
+			<h:outputText value="#{apuracaoBean.apuracao.prefeito_eleito.nome}" />
+			<h:outputText value="Governador Eleito" />
+			<h:outputText value="#{apuracaoBean.apuracao.governador_eleito.nome}" />
+			<h:outputText value="Presidente" />
+			<h:outputText value="#{apuracaoBean.apuracao.presidente_eleito.nome}" />
+		</p:panel>
+		<p:spacer width="100" height="20" />
+	</ui:define>
+</ui:composition>

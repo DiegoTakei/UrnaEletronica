@@ -23,8 +23,5 @@ public class IndexBean {
 	public void toDeletar() throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().redirect("deletar.xhtml");
 	}
-	
-	public void toEntrarEleicao() throws IOException{
-		FacesContext.getCurrentInstance().getExternalContext().redirect("entrar-eleicao.xhtml");
-	}
+
 }

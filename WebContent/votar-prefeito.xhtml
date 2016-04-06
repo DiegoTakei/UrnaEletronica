@@ -18,7 +18,7 @@
 				
 				<p:growl id="growl" life="2000" />
 				<p:commandButton value="Votar" update="growl" 
-					actionListener="#{votacaoBean.votarPrefeito}" styleClass="ui-priority-primary" />
+					actionListener="#{votacaoBean.votar}" styleClass="ui-priority-primary" />
 				
 				
 				<p:commandButton value="Branco" update="growl" 
@@ -30,7 +30,7 @@
 					
 			
 				<p:commandButton value="Encerrar Eleição" update="growl" 
-					actionListener="#{votacaoBean.encerrar_eleicao}" styleClass="ui-priority-primary" />
+					actionListener="#{apuracaoBean.encerrar_eleicao}" styleClass="ui-priority-primary" />
 			</p:panel>
 		</h:form>
 	</ui:define>

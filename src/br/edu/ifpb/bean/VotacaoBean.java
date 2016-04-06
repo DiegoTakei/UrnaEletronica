@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -23,126 +24,138 @@ public class VotacaoBean {
 	
 	Eleitor eleitor;
 	Candidato candidato;
-	Voto voto;  
+	Voto voto;
+	Apuracao apuracao;
+	private int cont = 3;
 	
 	public VotacaoBean() {
 		
 		this.eleitor = new Eleitor();
 		this.candidato = new Candidato();
 		this.voto = new Voto();
+		this.apuracao = new Apuracao();
+	}
+	
+	public void verificarEleicao() throws IOException{
+		CandidatoDAO candidatoDAO = new CandidatoDAO();
+		
+		if((candidatoDAO.getNumCandidatos("Prefeito")>=2)&& (candidatoDAO.getNumCandidatos("Governador")>=2)
+			&& (candidatoDAO.getNumCandidatos("Presidente")>=2))
+			FacesContext.getCurrentInstance().getExternalContext().redirect("entrar-eleicao.xhtml");
+		else{
+			FacesContext.getCurrentInstance().addMessage(
+					"messages",
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Não é possível iniciar uma eleição, não há candidatos suficientes", null));
+
+		}
 	}
 
 	public void verificarTitulo() throws IOException{
 		EleitorDAO eleitorDAO = new EleitorDAO();
 		Eleitor eleitor_aux = eleitorDAO.getByTitulo(eleitor.getTitulo_votacao());
-		
-		VotoDAO votoDAO = new VotoDAO();
-		List<Voto> voto_aux = votoDAO.getByVoto(eleitor_aux.getId());
 			
-		if((eleitor_aux!=null)&&(voto_aux.size()==0)){
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
+		if(eleitor_aux!=null){
+
+			VotoDAO votoDAO = new VotoDAO();
+			List<Voto> voto_aux = votoDAO.getByVoto(eleitor_aux.getId());
+			if(voto_aux.size()==0){
+				
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
+				FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
+			}else{
+				FacesContext.getCurrentInstance().addMessage(
+						"growl",
+						new FacesMessage(FacesMessage.SEVERITY_WARN,
+								"Não é possível votar: Eleitor já votou", null));
+			}
 		}else{
-			System.out.println("É nulo");
+			FacesContext.getCurrentInstance().addMessage(
+					"growl",
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Não é possível votar: Eleitor não cadastrado", null));
 		}
 	}
 	
-	public void votar(){			
+	public void votar() throws IOException{	
 		
-	}
-	 public void votarPrefeito() throws IOException{
-		 Date data = new Date();
-			CandidatoDAO candidatoDAO = new CandidatoDAO();
-			
-			eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
-
-			Candidato candidato = candidatoDAO.getByNumero(voto.getVoto_candidato());
-			
-			voto.setData(data);
-			voto.setEleitor(eleitor);
-			voto.setCandidato(candidato);
-
-			VotoDAO votoDAO = new VotoDAO();
-			votoDAO.insert(voto);
-			System.out.println("ok");
-			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-governador.xhtml");
-	 }
-	 
-	 public void votarGovernador() throws IOException{
-		 Date data = new Date();
-			CandidatoDAO candidatoDAO = new CandidatoDAO();
-			
-			eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
-
-			Candidato candidato = candidatoDAO.getByNumero(voto.getVoto_candidato());
-			
-			voto.setData(data);
-			voto.setEleitor(eleitor);
-			voto.setCandidato(candidato);
-	
-			VotoDAO votoDAO = new VotoDAO();
-			votoDAO.insert(voto);
-			
-			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-presidente.xhtml");
-	 }
-	public void votarPresidente() throws IOException{
 		Date data = new Date();
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
+		VotoDAO votoDAO = new VotoDAO();
 		
 		eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
 
 		Candidato candidato = candidatoDAO.getByNumero(voto.getVoto_candidato());
 		
-		voto.setData(data);
-		voto.setEleitor(eleitor);
-		voto.setCandidato(candidato);
+		switch (cont) {
+		case 3:
+			
+			voto.setData(data);
+			voto.setEleitor(eleitor);
+			voto.setCandidato(candidato);
+			voto.setCargo("Prefeito");
+
+			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-governador.xhtml");
+			cont--;
+			break;
+		case 2:
+			
+			voto.setData(data);
+			voto.setEleitor(eleitor);
+			voto.setCandidato(candidato);
+			voto.setCargo("Governador");
+
+			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-presidente.xhtml");
+			cont--;
+			break;
+		case 1:
+			
+			voto.setData(data);
+			voto.setEleitor(eleitor);
+			voto.setCandidato(candidato);
+			voto.setCargo("Presidente");
+	
+			FacesContext.getCurrentInstance().getExternalContext().redirect("entrar-eleicao.xhtml");
+			cont = 3;
+			break;
+
+		default:
+			break;
+		}
 		
-		VotoDAO votoDAO = new VotoDAO();
 		votoDAO.insert(voto);
-		
-		FacesContext.getCurrentInstance().getExternalContext().redirect("entrar-eleicao.xhtml");	
 	}
 	
-	
-	public void votar_branco(){
+	public void votar_branco() throws IOException{
 		Date data = new Date();
 		
-		eleitor = (Eleitor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("eleitor");
-				
 		voto.setData(data);
-		voto.setEleitor(eleitor);
+		voto.setEleitor(null);
 		voto.setCandidato(null);
 		voto.setVoto_candidato(0);
 			
 		VotoDAO votoDAO = new VotoDAO();
-		votoDAO.insert(voto);	
+		votoDAO.insert(voto);
 		
+		switch (cont) {
+		case 3:
+			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-governador.xhtml");
+			cont--;
+			break;
+		case 2:
+			FacesContext.getCurrentInstance().getExternalContext().redirect("votar-presidente.xhtml");
+			cont--;
+			break;
+		case 1:
+			FacesContext.getCurrentInstance().getExternalContext().redirect("entrar-eleicao.xhtml");
+			cont = 3;
+			break;
+
+		default:
+			break;
+		}
 	}
 	
-	public void encerrar_eleicao(){
-		
-		CandidatoDAO candidatoDAO = new CandidatoDAO();
-		VotoDAO votoDAO = new VotoDAO();
-		Apuracao apuracao = new Apuracao();
-		
-		apuracao.setQnt_votos(votoDAO.getAll().size());
-		
-		List<Candidato> candidatos = candidatoDAO.getAllCandidatos();
-		System.out.println("deu certo");
-			
-		for (Candidato candidato_aux : candidatos) {
-			candidato_aux.setNum_votos(votoDAO.getVotosCandidato(candidato_aux.getNumero()));
-			
-			if(apuracao.getCandidato_mais_votado().getNum_votos() < candidato_aux.getNum_votos()){
-				apuracao.setCandidato_eleito(candidato_aux);
-				
-			}else if(apuracao.getCandidato_menos_votado().getNum_votos() > candidato_aux.getNum_votos())
-				apuracao.setCandidato_menos_votado(candidato_aux);
-		}
-		
-		System.out.println("deu certo");
-	}
-
 	public Eleitor getEleitor() {
 		return eleitor;
 	}
@@ -157,6 +170,14 @@ public class VotacaoBean {
 
 	public void setVoto(Voto voto) {
 		this.voto = voto;
+	}
+
+	public Apuracao getApuracao() {
+		return apuracao;
+	}
+
+	public void setApuracao(Apuracao apuracao) {
+		this.apuracao = apuracao;
 	}
 
 }

@@ -42,6 +42,9 @@ public class Voto{
 	@Column(name="voto")
 	private int voto_candidato;
 	
+	@Column(name = "cargo")
+	private String cargo;
+	
 	
 
 	public Eleitor getEleitor() {
@@ -90,5 +93,15 @@ public class Voto{
 
 	public void setVoto_candidato(int voto_candidato) {
 		this.voto_candidato = voto_candidato;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}	
+	
+	
 }

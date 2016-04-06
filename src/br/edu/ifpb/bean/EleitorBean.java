@@ -1,7 +1,10 @@
 package br.edu.ifpb.bean;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import br.edu.ifpb.dao.EleitorDAO;
 import br.edu.ifpb.entidade.Eleitor;
@@ -17,10 +20,11 @@ public class EleitorBean {
 		this.eleitor = new Eleitor();		
 	}
 	
-	public void cadastrarEleitor(){
+	public void cadastrarEleitor() throws IOException{
 		
 		EleitorDAO eleitorDAO = new EleitorDAO();
 		eleitorDAO.insert(eleitor);
+		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 	}
 	
 	public void deletarEleitor(){

@@ -69,14 +69,15 @@ public class CandidatoDAO extends GenericDAO<Candidato> {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		List <Candidato> candidatos = null;
+		String candidato = "Candidato";
 		
 		try {
 			
-			String hql = "from Pessoa as a"
-					+ " where a.DTYPE = :candidato";
+			String hql = "from Pessoa "
+					+ " where DTYPE = :candidato";
 			
 			Query query = session.createQuery(hql);
-			query.setParameter("candidato", "candidato");
+			query.setParameter("candidato", candidato);
 			
 			candidatos = (List<Candidato>) query.list();
 	        
@@ -90,6 +91,37 @@ public class CandidatoDAO extends GenericDAO<Candidato> {
 		}
 		
 		return candidatos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public int getNumCandidatos(String cargo) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		List <Candidato> candidatos = null;
+		
+		try {
+			
+			String hql = "from Pessoa as a"
+					+ " where a.cargo = :cargo";
+			
+			Query query = session.createQuery(hql);
+			query.setParameter("cargo", cargo);
+			
+			candidatos = (List<Candidato>) query.list();
+	        
+		} catch (HibernateException hibernateException) {
+			
+			session.getTransaction().rollback();
+			
+		} finally {
+		
+			session.close();
+		}
+		if(candidatos == null)
+			return 0;
+		
+		return candidatos.size();
 	}
 
 
