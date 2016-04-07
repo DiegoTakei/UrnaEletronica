@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import br.edu.ifpb.dao.CandidatoDAO;
 import br.edu.ifpb.entidade.Candidato;
@@ -14,24 +13,26 @@ import br.edu.ifpb.entidade.Candidato;
 public class CandidatoBean {
 	
 	private Candidato candidato;
+	private String index = "index.xhtml?faces-redirect=true&includeViewParams=true";
 	
 	public CandidatoBean() {
 		
 		this.candidato = new Candidato();		
 	}
 	
-	public void cadastrarCandidato() throws IOException{
+	public String cadastrarCandidato() throws IOException{
 		
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		candidatoDAO.insert(candidato);
-		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+		return index;
 	}
 	
-	public void deletarCandidato() throws IOException{
+	public String deletarCandidato() throws IOException{
 		
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		candidatoDAO.delete(candidato);
-		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+		
+		return index;
 	}
 
 	public Candidato getCandidato() {

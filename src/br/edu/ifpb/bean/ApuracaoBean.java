@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.SessionScoped;
 
 import br.edu.ifpb.dao.CandidatoDAO;
 import br.edu.ifpb.dao.VotoDAO;
@@ -12,6 +12,7 @@ import br.edu.ifpb.entidade.Apuracao;
 import br.edu.ifpb.entidade.Candidato;
 
 @ManagedBean
+@SessionScoped
 public class ApuracaoBean {
 	
 	Apuracao apuracao;
@@ -19,7 +20,7 @@ public class ApuracaoBean {
 	public ApuracaoBean(){
 		this.apuracao = new Apuracao();
 	}
-	public void encerrarEleicao() throws IOException{
+	public String encerrarEleicao() throws IOException{
 		
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		VotoDAO votoDAO = new VotoDAO();
@@ -92,10 +93,13 @@ public class ApuracaoBean {
 	
 		apuracao.setPrefeitoEleito(apuracao.getPrefeitoMaisVotado());
 		apuracao.setGovernadorEleito(apuracao.getGovernadorMaisVotado());
-		apuracao.setPrefeitoEleito(apuracao.getPresidenteMaisVotado());
+		apuracao.setPresidenteEleito(apuracao.getPresidenteMaisVotado());
 		apuracao.setQuantidadeBrancos(votoDAO.getVotosEmBranco());
+		apuracao.setQuantidadeVotos(votoDAO.getAll().size());
 		
-		FacesContext.getCurrentInstance().getExternalContext().redirect("resultado.xhtml");
+		String resultado = "resultado.xhtml?faces-redirect=true&includeViewParams=true";
+		
+		return resultado;
 	}
 
 	public Apuracao getApuracao() {

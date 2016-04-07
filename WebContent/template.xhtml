@@ -38,7 +38,7 @@
 					<h:form>
 					    <p:growl id="msgs" showDetail="true" />					 
 								 
-					    <p:fieldset legend="Desenvolvedores" toggleable="true" collapsed="true" toggleSpeed="500">
+					    <p:fieldset id="fieldset" legend="Desenvolvedores" toggleable="true" collapsed="true" toggleSpeed="500">
 					        <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />
 					        <h:panelGrid columns="2" cellpadding="5">
 					            <p:graphicImage value="img/ifpb.png" />

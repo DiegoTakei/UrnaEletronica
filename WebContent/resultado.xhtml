@@ -12,12 +12,33 @@
 	
 	<ui:define name="conteudo">
 		<p:panel>
-			<h:outputText value="Prefeito Eleito" />
-			<h:outputText value="#{apuracaoBean.apuracao.prefeitoEleito.nome}" />
-			<h:outputText value="Governador Eleito" />
-			<h:outputText value="#{apuracaoBean.apuracao.governadorEleito.nome}" />
-			<h:outputText value="Presidente" />
-			<h:outputText value="#{apuracaoBean.apuracao.presidenteEleito.nome}" />
+			<p:dataTable var="apuracao" value="#{apuracaoBean.apuracao}">
+			
+    			<p:column headerText="Prefeito eleito">
+  					  <h:outputText value="#{apuracao.prefeitoEleito.nome}"/>
+  				</p:column>
+  				<p:column headerText="Governador eleito">
+  					  <h:outputText value="#{apuracao.governadorEleito.nome}"/>
+  				</p:column>
+  				<p:column headerText="Presidente eleito">
+  					  <h:outputText value="#{apuracao.presidenteEleito.nome}"/>
+  				</p:column>
+  				<p:column headerText="Prefeito menos votado">
+  					  <h:outputText value="#{apuracao.prefeitoMenosVotado.nome}"/>
+  				</p:column>
+  				<p:column headerText="Governador menos votado">
+  					  <h:outputText value="#{apuracao.governadorMenosVotado.nome}"/>
+  				</p:column>
+  				<p:column headerText="Presidente menos votado">
+  					  <h:outputText value="#{apuracao.presidenteMenosVotado.nome}"/>
+  				</p:column>
+  				<p:column headerText="Votos no total">
+  					  <h:outputText value="#{apuracao.quantidadeVotos}"/>
+  				</p:column>
+  				<p:column headerText="Votos em Branco">
+  					  <h:outputText value="#{apuracao.quantidadeBrancos}"/>
+  				</p:column>
+  			</p:dataTable>
 		</p:panel>
 		<p:spacer width="100" height="20" />
 	</ui:define>

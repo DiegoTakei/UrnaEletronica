@@ -22,9 +22,9 @@
 			    </p:menuButton>
 			    <p:growl id="growl" life="2000" />
 			    <p:spacer width="20" height="50" />
-	     	    <p:commandButton value="Deletar" id="ajax" update="growl" actionListener="#{indexBean.toDeletar}" styleClass="ui-priority-primary" />
+	     	    <p:commandButton value="Deletar" id="ajax" update="growl" action="#{indexBean.toDeletar}" styleClass="ui-priority-primary" />
 	     	    <p:spacer width="20" height="50" />
-	     	    <p:commandButton value="Iniciar uma Eleição"  update="growl" actionListener="#{votacaoBean.verificarEleicao}" styleClass="ui-priority-primary" />
+	     	    <p:commandButton value="Iniciar uma Eleição"  update="growl" action="#{votacaoBean.verificarEleicao}" styleClass="ui-priority-primary" />
 			</h:form>
 		</p:panel>
 		<p:spacer width="100" height="20" />

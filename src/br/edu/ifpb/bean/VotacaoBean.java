@@ -22,11 +22,12 @@ import br.edu.ifpb.entidade.Voto;
 @ManagedBean	
 public class VotacaoBean {
 	
-	Eleitor eleitor;
-	Candidato candidato;
-	Voto voto;
-	Apuracao apuracao;
+	private Eleitor eleitor;
+	private Candidato candidato;
+	private Voto voto;
+	private Apuracao apuracao;
 	private int cont = 3;
+	private String redirecionar;
 	
 	public VotacaoBean() {
 		
@@ -36,22 +37,24 @@ public class VotacaoBean {
 		this.apuracao = new Apuracao();
 	}
 	
-	public void verificarEleicao() throws IOException{
+	public String verificarEleicao() throws IOException{
 		CandidatoDAO candidatoDAO = new CandidatoDAO();
 		
 		if((candidatoDAO.getNumCandidatos("Prefeito")>=2)&& (candidatoDAO.getNumCandidatos("Governador")>=2)
-			&& (candidatoDAO.getNumCandidatos("Presidente")>=2))
-			FacesContext.getCurrentInstance().getExternalContext().redirect("entrar-eleicao.xhtml");
-		else{
+			&& (candidatoDAO.getNumCandidatos("Presidente")>=2)){
+				redirecionar = "entrar-eleicao.xhtml?faces-redirect=true&includeViewParams=true";
+				return redirecionar;
+			}else{
 			FacesContext.getCurrentInstance().addMessage(
 					"messages",
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Não é possível iniciar uma eleição, não há candidatos suficientes", null));
 
 		}
+		return null;
 	}
 
-	public void verificarTitulo() throws IOException{
+	public String verificarTitulo() throws IOException{
 		EleitorDAO eleitorDAO = new EleitorDAO();
 		Eleitor eleitor_aux = eleitorDAO.getByTitulo(eleitor.getTituloVotacao());
 			
@@ -60,9 +63,9 @@ public class VotacaoBean {
 			VotoDAO votoDAO = new VotoDAO();
 			List<Voto> voto_aux = votoDAO.getByVoto(eleitor_aux.getId());
 			if(voto_aux.size()==0){
-				
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("eleitor", eleitor_aux);
-				FacesContext.getCurrentInstance().getExternalContext().redirect("votar.xhtml");
+				redirecionar = "votar-prefeito.xhtml?faces-redirect=true&includeViewParams=true";
+				return redirecionar;
 			}else{
 				FacesContext.getCurrentInstance().addMessage(
 						"growl",
@@ -75,6 +78,7 @@ public class VotacaoBean {
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Não é possível votar: Eleitor não cadastrado", null));
 		}
+		return null;
 	}
 	
 	public void votar() throws IOException{	
@@ -178,6 +182,14 @@ public class VotacaoBean {
 
 	public void setApuracao(Apuracao apuracao) {
 		this.apuracao = apuracao;
+	}
+
+	public Candidato getCandidato() {
+		return candidato;
+	}
+
+	public void setCandidato(Candidato candidato) {
+		this.candidato = candidato;
 	}
 
 }

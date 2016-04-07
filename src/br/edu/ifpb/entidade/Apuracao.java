@@ -11,9 +11,7 @@ public class Apuracao {
 	private int quantidadeBrancos;
 	
 	private int quantidadeNulos;
-	
-	private int quantidadeAusentes;
-	
+		
 	private Candidato prefeitoMaisVotado;
 	
 	private Candidato governadorMaisVotado;
@@ -31,8 +29,6 @@ public class Apuracao {
 	private Candidato governadorEleito;
 	
 	private Candidato presidenteEleito;	
-	
-	private Candidato candidatosSegundoTurno;
 	
 
 	public int getId() {
@@ -65,14 +61,6 @@ public class Apuracao {
 
 	public void setQuantidadeNulos(int quantidadeNulos) {
 		this.quantidadeNulos = quantidadeNulos;
-	}
-
-	public int getQuantidadeAusentes() {
-		return quantidadeAusentes;
-	}
-
-	public void setQuantidadeAusentes(int quantidadeAusentes) {
-		this.quantidadeAusentes = quantidadeAusentes;
 	}
 
 	public Candidato getPrefeitoMaisVotado() {
@@ -147,15 +135,6 @@ public class Apuracao {
 		this.presidenteEleito = presidenteEleito;
 	}
 
-	public Candidato getCandidatosSegundoTurno() {
-		return candidatosSegundoTurno;
-	}
-
-	public void setCandidatosSegundoTurno(Candidato candidatosSegundoTurno) {
-		this.candidatosSegundoTurno = candidatosSegundoTurno;
-	}
-
-	
 	
 
 }

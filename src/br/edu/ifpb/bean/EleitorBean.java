@@ -14,22 +14,27 @@ import br.edu.ifpb.entidade.Eleitor;
 public class EleitorBean {
 	
 	private Eleitor eleitor;
+	private String index = "index.xhtml?faces-redirect=true&includeViewParams=true";
 	
 	public EleitorBean() {
 		
 		this.eleitor = new Eleitor();		
 	}
 	
-	public void cadastrarEleitor() throws IOException{
+	public String cadastrarEleitor() throws IOException{
 		
 		EleitorDAO eleitorDAO = new EleitorDAO();
 		eleitorDAO.insert(eleitor);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+		
+		return index;
 	}
 	
-	public void deletarEleitor(){
+	public String deletarEleitor(){
 		EleitorDAO eleitorDAO = new EleitorDAO();
 		eleitorDAO.delete(eleitor);
+		
+		return index;
 	}
 	
 	public Eleitor getEleitor() {

@@ -44,7 +44,7 @@ public class EleitorDAO extends GenericDAO<Eleitor> {
 		try {
 			
 			String hql = "from Eleitor as a"
-					+ " where a.titulo_votacao = :titulo";
+					+ " where a.tituloVotacao = :titulo";
 			
 			Query query = session.createQuery(hql);
 			query.setParameter("titulo", titulo);
