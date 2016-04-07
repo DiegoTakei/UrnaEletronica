@@ -24,7 +24,7 @@ public abstract class Pessoa {
 	@Column(name = "endereco")
 	private String endereco;
 	
-	@Column(name = "cpf_pessoa")
+	@Column(name = "cpf_pessoa", unique = true)
 	private String cpf;
 	
 

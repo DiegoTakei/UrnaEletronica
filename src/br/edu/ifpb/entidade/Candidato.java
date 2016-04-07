@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 public class Candidato extends Eleitor {
 	
-	@Column(name = "numero_candidato")
+	@Column(name = "numero_candidato", unique = true)
 	private int numero;
 	
 	@Column(name = "cargo_candidato")
